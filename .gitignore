@@ -1,0 +1,9 @@
+# dependências e arquivos gerados
+node_modules/
+dist/
+.astro/
+# arquivos do sistema e logs
+.DS_Store
+Thumbs.db
+*.log
+.env

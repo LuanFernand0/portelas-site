@@ -1,0 +1,106 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+const ambientes = [
+  { id: 'cozinha', nome: 'Cozinhas', img: '/imagens/cozinha.webp' },
+  { id: 'quarto', nome: 'Quartos', img: '/imagens/quarto.webp' },
+  { id: 'sala', nome: 'Salas', img: '/imagens/sala.webp' },
+  { id: 'banheiro', nome: 'Banheiros', img: '/imagens/banheiro.webp' },
+  { id: 'externos', nome: 'Áreas externas', img: '/imagens/externos.webp' },
+  { id: '3d', nome: 'Projetos 3D', img: '/imagens/projeto.webp' },
+];
+const tons = [
+  ['Freijó', 'linear-gradient(95deg,#c79a63,#b98650 40%,#d2a972)'],
+  ['Carvalho', 'linear-gradient(95deg,#b89b72,#a88a60 45%,#c4a97f)'],
+  ['Nogueira', 'linear-gradient(95deg,#5a3a26,#4a2e1d 50%,#68432b)'],
+  ['Grafite', 'linear-gradient(95deg,#4b4b4d,#3a3a3c)'],
+  ['Branco', 'linear-gradient(95deg,#f4f2ee,#e7e3dc)'],
+];
+const difs = [
+  ['fa-hammer', 'Fabricação própria', 'Cada peça é produzida na nossa oficina em Itaipu, com acabamento e prazo sob controle.'],
+  ['fa-check-double', 'Sem aglomerado', 'Trabalhamos exclusivamente com MDF e compensado, para móveis que duram.'],
+  ['fa-ruler-combined', 'Sob medida de verdade', 'O projeto aproveita cada centímetro do seu espaço, do rodapé ao teto.'],
+];
+---
+<LayoutBase titulo="Portela's Marcenaria | Móveis planejados em Niterói" ativo="inicio">
+  
+  <header class="hero">
+    <div class="container hero-inner">
+      <h1>Móveis sob medida que valorizam cada ambiente</h1>
+      <p>Marcenaria em Itaipu, Niterói. Você vê o projeto em 3D antes da produção e escolhe entre as chapas MDF das principais fabricantes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-brass" href="/galeria">Ver projetos</a>
+        <a class="btn btn-line" href="https://wa.me/5521984592134" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Pedir orçamento</a>
+      </div>
+    </div>
+    <div class="swatch-strip">
+      <div class="container">
+        <span class="t">Escolha a chapa do seu móvel:</span>
+        {tons.map(([n, g]) => <a class="swatch" href="/mostruario"><i style={`background:${g}`}></i>{n}</a>)}
+        <a class="swatch" href="/mostruario"><b>Ver mostruário completo</b></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">O que você quer planejar?</h2>
+      <p class="section-lead">Toque em um ambiente para ver projetos que já entregamos.</p>
+      <div class="mosaic">
+        {ambientes.map((a) => (
+          <a href={`/galeria?categoria=${a.id}`}><img src={a.img} alt={a.nome} loading="lazy" /><b>{a.nome}</b></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container split">
+      <div>
+        <h2 class="section-title">Veja o móvel pronto antes de produzir</h2>
+        <p class="section-lead" style="margin-bottom:0">Elaboramos o projeto 3D do seu ambiente com as cores e medidas reais. Você aprova o que vai receber, ajusta detalhes e evita surpresas na instalação.</p>
+        <ul class="ticks">
+          <li><i class="fas fa-check"></i>Projeto 3D com medidas do seu espaço</li>
+          <li><i class="fas fa-check"></i>Cores e acabamentos escolhidos no mostruário</li>
+          <li><i class="fas fa-check"></i>Ajustes antes de cortar a primeira chapa</li>
+        </ul>
+        <a class="btn btn-dark" href="/galeria?categoria=3d">Ver projetos 3D</a>
+      </div>
+      <img src="/imagens/Desenho.webp" alt="Projeto 3D de ambiente planejado" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="section pvb">
+    <div class="container split">
+      <div>
+        <h2 class="section-title">Painéis em PVB para onde a umidade é o problema</h2>
+        <p class="section-lead" style="margin-bottom:0">Indicado para cozinhas, banheiros, lavanderias e áreas externas, onde o MDF comum sofre com água e cupim.</p>
+        <ul class="ticks">
+          <li><i class="fas fa-check"></i>Material 100% à prova d'água</li>
+          <li><i class="fas fa-check"></i>Anti-cupim, sem manutenção especial</li>
+        </ul>
+        <a class="btn btn-brass" href="https://wa.me/5521984592134?text=Quero%20saber%20mais%20sobre%20pain%C3%A9is%20em%20PVB" target="_blank" rel="noopener">Perguntar sobre PVB</a>
+      </div>
+      <div class="pvb-badges">
+        <div><i class="fas fa-droplet"></i><h3>100% à prova d'água</h3><p>Não incha nem deforma com umidade.</p></div>
+        <div><i class="fas fa-bug-slash"></i><h3>Anti-cupim</h3><p>Proteção contra cupins para o móvel durar.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Por que a Portela's</h2>
+      <div class="diffs" style="margin-top:30px">
+        {difs.map(([ic, t, d]) => <div><i class={`fas ${ic}`}></i><h3>{t}</h3><p>{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-band">
+    <div class="container">
+      <h2 class="section-title">Pronto para tirar o projeto do papel?</h2>
+      <p class="section-lead" style="margin:0 auto 28px">Mande as medidas e uma foto do ambiente pelo WhatsApp (21) 98459-2134.</p>
+      <a class="btn btn-wa" href="https://wa.me/5521984592134" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Pedir orçamento</a>
+    </div>
+  </section>
+</LayoutBase>

@@ -1,0 +1,36 @@
+---
+/* src/layouts/AdminLayout.astro */
+import '../styles/admin.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Painel Administrativo" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-body">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Painel</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="active"><a href="/admin"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="/admin/galeria"><i class="fa-solid fa-images"></i> Galeria</a></li>
+      <li class="sair"><a href="/admin/login"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <slot />
+  </main>
+</body>
+</html>

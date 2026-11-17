@@ -1,0 +1,77 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+---
+<LayoutBase titulo="Mostruário de cores MDF | Portela's Marcenaria" descricao="Catálogo de chapas MDF Guararapes, Duratex e outras fabricantes para o seu móvel sob medida." ativo="mostruario">
+  <header class="page-head">
+    <div class="container">
+      <h1>Mostruário de cores MDF</h1>
+      <p>Escolha a fabricante, navegue pelas linhas e amplie a chapa. Guararapes e Duratex ficam em destaque.</p>
+    </div>
+  </header>
+  <section class="container">
+    <div class="chips" id="abas" role="tablist" aria-label="Fabricantes"></div>
+    <div class="sheet-tools">
+      <input class="search" id="busca" type="search" placeholder="Buscar cor ou linha" aria-label="Buscar cor ou linha" />
+      <select class="search" id="linha" aria-label="Filtrar por linha"><option value="">Todas as linhas</option></select>
+    </div>
+    <p id="contagem" style="margin:18px 0 6px;color:#6b5645"></p>
+    <div class="sheets" id="grid-materiais" aria-live="polite"></div>
+  </section>
+  <script is:inline src="/lightbox.js"></script>
+  <script is:inline>
+    // No computador ou pelo Wi-Fi (porta do Astro): servidor na porta 8080 do mesmo endereço. Online: o próprio site.
+    const API_URL = (location.port && !['80', '443', '8080'].includes(location.port)) ? location.protocol + '//' + location.hostname + ':8080' : '';
+    const PRIORIDADE = ['guararapes', 'duratex'];
+    const $ = id => document.getElementById(id);
+    const abs = u => !u ? '' : (/^https?:/.test(u) ? u : API_URL + (u.startsWith('/') ? '' : '/') + u);
+    const src = i => i.local ? i.url : abs(i.url);
+    const norm = s => (s || '').trim();
+    const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+    let todos = [], aba = 'guararapes', visiveis = [];
+
+    function abas() {
+      const nomes = [...new Set(todos.map(i => norm(i.fabricante)).filter(Boolean))];
+      const key = n => n.toLowerCase();
+      const outros = nomes.filter(n => !PRIORIDADE.includes(key(n))).sort((a, b) => a.localeCompare(b));
+      const lista = [...PRIORIDADE.map(p => nomes.find(n => key(n) === p) || cap(p)), ...outros];
+      $('abas').innerHTML = lista.map((n, idx) => {
+        const qtd = todos.filter(i => key(norm(i.fabricante)) === key(n)).length;
+        return `<button class="chip ${idx < 2 ? 'pri' : ''}" role="tab" data-f="${Lightbox.esc(key(n))}" aria-selected="false">${Lightbox.esc(n)} (${qtd})</button>`;
+      }).join('') + `<button class="chip" role="tab" data-f="" aria-selected="false">Todas (${todos.length})</button>`;
+    }
+
+    function render() {
+      document.querySelectorAll('#abas .chip').forEach(c => c.setAttribute('aria-selected', String(c.dataset.f === aba)));
+      const daAba = todos.filter(i => !aba || norm(i.fabricante).toLowerCase() === aba);
+      const linhas = [...new Set(daAba.map(i => norm(i.categoria)).filter(Boolean))].sort();
+      const atual = $('linha').value;
+      $('linha').innerHTML = '<option value="">Todas as linhas</option>' + linhas.map(l => `<option ${l === atual ? 'selected' : ''}>${Lightbox.esc(l)}</option>`).join('');
+      const q = $('busca').value.toLowerCase(), ln = $('linha').value;
+      visiveis = daAba.filter(i => (!ln || norm(i.categoria) === ln) && (!q || (i.nome + ' ' + i.categoria).toLowerCase().includes(q)));
+      $('contagem').textContent = visiveis.length + (visiveis.length === 1 ? ' chapa encontrada' : ' chapas encontradas');
+      $('grid-materiais').innerHTML = visiveis.length
+        ? visiveis.map((i, n) => `<button class="sheet" data-i="${n}" aria-label="Ampliar ${Lightbox.esc(i.nome)}"><img src="${Lightbox.esc(src(i))}" alt="${Lightbox.esc(i.nome)}" loading="lazy"><div><b>${Lightbox.esc(i.nome)}</b><small>${Lightbox.esc(norm(i.categoria))}</small></div></button>`).join('')
+        : '<p class="msg" style="grid-column:1/-1">Nenhuma chapa nesta seleção. Tente outra fabricante ou limpe a busca.</p>';
+    }
+
+    $('abas').addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) { aba = b.dataset.f; $('linha').value = ''; render(); } });
+    $('busca').addEventListener('input', render);
+    $('linha').addEventListener('change', render);
+    $('grid-materiais').addEventListener('click', e => {
+      const b = e.target.closest('.sheet'); if (!b) return;
+      Lightbox.open(visiveis.map(i => ({ src: src(i), title: i.nome, sub: norm(i.fabricante) + ', ' + norm(i.categoria) })), +b.dataset.i);
+    });
+
+    const lista = (url, local) => fetch(url).then(r => { if (!r.ok) throw 0; return r.json(); })
+      .then(d => Array.isArray(d) ? d.map(i => ({ ...i, local })) : []).catch(() => null);
+    // Fonte principal: o banco (o que você cadastra/exclui no painel).
+    // Se o servidor estiver fora do ar, usa o catálogo de reserva (public/mostruario.json).
+    (async () => {
+      let d = await lista(API_URL + '/api/mostruario/listar', false);
+      if (!d || !d.length) d = await lista('/mostruario.json', true) || [];
+      todos = d;
+      if (!todos.length) { $('grid-materiais').innerHTML = '<p class="msg" style="grid-column:1/-1">Nenhuma chapa cadastrada ainda.</p>'; return; }
+      abas(); render();
+    })();
+  </script>
+</LayoutBase>

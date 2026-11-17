@@ -1,0 +1,21 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+---
+<LayoutBase titulo="Solicitar orçamento | Portela's Marcenaria">
+  <header class="page-head"><div class="container"><h1>Solicitar orçamento</h1><p>Conte o que você precisa e continue a conversa pelo WhatsApp.</p></div></header>
+  <form id="form-orcamento" class="form-card">
+    <label for="nome">Nome completo</label><input id="nome" required />
+    <label for="ambiente">Ambiente</label>
+    <select id="ambiente"><option>Cozinha</option><option>Quarto</option><option>Sala</option><option>Banheiro</option><option>Área externa</option><option>Outro</option></select>
+    <label for="detalhes">Medidas e detalhes</label><textarea id="detalhes" rows="4" required></textarea>
+    <button class="btn btn-wa" type="submit"><i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp</button>
+  </form>
+  <script is:inline>
+    document.getElementById('form-orcamento').addEventListener('submit', e => {
+      e.preventDefault();
+      const v = id => document.getElementById(id).value;
+      const txt = `*Pedido de orçamento pelo site*\n*Nome:* ${v('nome')}\n*Ambiente:* ${v('ambiente')}\n*Detalhes:* ${v('detalhes')}`;
+      window.open('https://wa.me/5521984592134?text=' + encodeURIComponent(txt), '_blank');
+    });
+  </script>
+</LayoutBase>

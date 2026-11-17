@@ -1,0 +1,165 @@
+---
+import '../styles/admin.css';
+const cats = [['cozinha', 'Cozinha'], ['quarto', 'Quarto'], ['sala', 'Sala'], ['banheiro', 'Banheiro'], ['externos', 'Externos'], ['3d', 'Projetos 3D']];
+const menu = [['dashboard', 'fa-gauge-high', 'Visão geral'], ['clientes', 'fa-users', 'Clientes'], ['orcamentos', 'fa-file-invoice-dollar', 'Orçamentos'], ['galeria', 'fa-images', 'Galeria do site'], ['mostruario', 'fa-swatchbook', 'Mostruário de cores']];
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel | Portela's Marcenaria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="admin-body">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">P</div><div><b>Portela's</b><small>Painel de gestão</small></div></div>
+    <ul class="sidebar-menu">
+      {menu.map(([id, ic, nome], n) => (
+        <li id={`menu-${id}`} class={n === 0 ? 'active' : ''}><a href="#" onclick={`mudarAba('${id}');return false`}><i class={`fas ${ic}`}></i>{nome}</a></li>
+      ))}
+      <li class="sair"><a href="/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i>Ver o site</a></li>
+      <li><a href="#" onclick="efetuarLogout();return false"><i class="fas fa-right-from-bracket"></i>Sair</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div style="display:flex;align-items:center"><button class="menu-btn" id="menu-btn" aria-label="Abrir menu"><i class="fas fa-bars"></i></button><div class="topbar-title" id="topbar-title">Visão geral</div></div>
+      <div class="user-profile"><span class="avatar">LF</span><span>Luan Fernando</span></div>
+    </header>
+
+    <div id="aba-dashboard">
+      <div class="page-title"><div><h2>Olá, Luan</h2><p>Resumo do que está publicado e cadastrado.</p></div></div>
+      <div class="stats">
+        <div class="stat"><i class="fas fa-users"></i><div><b id="st-clientes">-</b><span>Clientes</span></div></div>
+        <div class="stat"><i class="fas fa-file-invoice-dollar"></i><div><b id="st-orcamentos">-</b><span>Orçamentos</span></div></div>
+        <div class="stat"><i class="fas fa-images"></i><div><b id="st-fotos">-</b><span>Fotos na galeria</span></div></div>
+        <div class="stat"><i class="fas fa-swatchbook"></i><div><b id="st-amostras">-</b><span>Chapas no mostruário</span></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Ações rápidas</h3></div>
+        <div class="quick">
+          <button onclick="mudarAba('galeria')"><i class="fas fa-camera"></i><span><b>Publicar projeto</b><small>Adicionar foto à galeria</small></span></button>
+          <button onclick="mudarAba('mostruario')"><i class="fas fa-swatchbook"></i><span><b>Cadastrar chapa</b><small>Nova cor no mostruário</small></span></button>
+          <button onclick="abrirModal()"><i class="fas fa-user-plus"></i><span><b>Novo cliente</b><small>Cadastrar contato</small></span></button>
+          <button onclick="mudarAba('orcamentos')"><i class="fas fa-file-pdf"></i><span><b>Gerar orçamento</b><small>Proposta em PDF</small></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="aba-clientes" style="display:none">
+      <div class="page-title"><div><h2>Clientes</h2><p>Contatos cadastrados.</p></div><button class="btn-action" onclick="abrirModal()"><i class="fas fa-plus"></i> Novo cliente</button></div>
+      <div class="table-wrap"><table class="admin-table"><thead><tr><th>ID</th><th>Nome</th><th>Telefone</th><th>Endereço</th><th></th></tr></thead><tbody id="tabela-clientes-body"></tbody></table></div>
+    </div>
+
+    <div id="aba-orcamentos" style="display:none">
+      <div class="page-title"><div><h2>Orçamentos</h2><p>Histórico e geração de propostas em PDF.</p></div></div>
+      <div class="table-wrap"><table class="admin-table"><thead><tr><th>Cód.</th><th>Data</th><th>Cliente</th><th>Serviços</th><th>Valor</th><th></th></tr></thead><tbody id="tabela-orcamentos-body"></tbody></table></div>
+      <div class="panel" style="margin-top:24px">
+        <div class="panel-head"><h3>Novo orçamento em PDF</h3></div>
+        <form id="formGerarPDF" class="upload-form">
+          <div class="input-group-admin"><label for="nome-cliente">Cliente</label><select id="nome-cliente" required><option>Carregando...</option></select></div>
+          <div id="lista-servicos"><div class="form-row servico-item">
+            <div class="input-group-admin" style="flex:2"><label>Serviço</label><input type="text" class="desc-servico" required /></div>
+            <div class="input-group-admin" style="flex:1"><label>Valor (R$)</label><input type="text" class="valor-item" required /></div>
+          </div></div>
+          <button type="button" class="btn-action btn-ghost" onclick="adicionarLinhaServico()"><i class="fas fa-plus"></i> Adicionar item</button>
+          <button type="submit" class="btn-publish"><i class="fas fa-file-pdf"></i> Gerar PDF</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="aba-galeria" style="display:none">
+      <div class="page-title"><div><h2>Galeria do site</h2><p>Fotos que aparecem na página Projetos.</p></div></div>
+      <div class="panel">
+        <div class="panel-head"><h3>Publicar projeto</h3></div>
+        <form id="formUploadFoto" class="upload-form">
+          <div class="form-row">
+            <div class="input-group-admin"><label for="titulo-projeto">Título</label><input type="text" id="titulo-projeto" required placeholder="Ex.: Cozinha planejada em Itaipu" /></div>
+            <div class="input-group-admin"><label for="categoria-projeto">Ambiente</label>
+              <select id="categoria-projeto" required><option value="" disabled selected>Selecione</option>{cats.map(([v, n]) => <option value={v}>{n}</option>)}</select></div>
+          </div>
+          <div class="file-upload-wrapper">
+            <label class="file-upload-label"><i class="fas fa-cloud-arrow-up"></i><span>Clique ou arraste a foto até aqui</span>
+              <input type="file" id="foto-projeto" accept="image/*" required onchange="previsualizarArquivo(this)" /></label>
+            <img class="drop-thumb" alt="" /><div id="file-name-preview" class="file-preview-text">Nenhum arquivo selecionado</div>
+          </div>
+          <button type="submit" class="btn-publish"><i class="fas fa-paper-plane"></i> Publicar no site</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Fotos publicadas</h3></div>
+        <div class="toolbar"><input class="field" data-filtro="admin-photo-grid" placeholder="Buscar por título" aria-label="Buscar foto" /></div>
+        <div class="admin-photo-grid" id="admin-photo-grid"></div>
+      </div>
+    </div>
+
+    <div id="aba-mostruario" style="display:none">
+      <div class="page-title"><div><h2>Mostruário de cores</h2><p>Chapas exibidas em Mostruário de cores no site, agrupadas por fabricante.</p></div></div>
+      <div class="panel" id="lote-box">
+        <div class="panel-head"><h3>Importar várias chapas de uma vez</h3></div>
+        <p class="subtitle-admin">Selecione todas as imagens da pasta (Ctrl+A). O nome e a linha são lidos do nome do arquivo e você pode corrigir antes de enviar.</p>
+        <div class="form-row">
+          <div class="input-group-admin"><label for="lote-fab">Fabricante</label><input type="text" id="lote-fab" list="fabricantes" value="Guararapes" /></div>
+          <label class="check"><input type="checkbox" id="lote-subst" checked /> Substituir chapas já cadastradas com o mesmo nome</label>
+        </div>
+        <div class="file-upload-wrapper" id="lote-drop" style="margin-top:16px">
+          <label class="file-upload-label"><i class="fas fa-images"></i><span>Clique ou arraste as imagens aqui</span>
+            <input type="file" id="lote-files" accept="image/*" multiple /></label>
+        </div>
+        <div class="table-wrap" id="lote-lista" style="display:none;margin-top:16px;max-height:460px;overflow:auto">
+          <table class="admin-table"><thead><tr><th></th><th>Nome</th><th>Linha</th><th>Situação</th><th></th></tr></thead><tbody id="lote-body"></tbody></table>
+        </div>
+        <div class="progress" id="lote-prog" style="display:none"><div id="lote-bar"></div></div>
+        <div class="lote-actions"><span id="lote-status"></span>
+          <button type="button" class="btn-action btn-ghost" id="lote-limpar">Limpar lista</button>
+          <button type="button" class="btn-publish" id="lote-enviar" disabled><i class="fas fa-paper-plane"></i> Enviar chapas</button></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Cadastrar chapa</h3></div>
+        <form id="formUploadMostruario" class="upload-form">
+          <div class="form-row">
+            <div class="input-group-admin"><label for="mostruario-nome">Nome da cor</label><input type="text" id="mostruario-nome" required placeholder="Ex.: Freijó" /></div>
+            <div class="input-group-admin"><label for="mostruario-fabricante">Fabricante</label>
+              <input type="text" id="mostruario-fabricante" list="fabricantes" required placeholder="Guararapes, Duratex..." />
+              <datalist id="fabricantes"><option>Guararapes</option><option>Duratex</option><option>Berneck</option><option>Arauco</option><option>Eucatex</option><option>Sudati</option></datalist></div>
+            <div class="input-group-admin"><label for="mostruario-categoria">Linha</label><input type="text" id="mostruario-categoria" required placeholder="Ex.: Madeiras do Mundo" /></div>
+          </div>
+          <div class="file-upload-wrapper">
+            <label class="file-upload-label"><i class="fas fa-cloud-arrow-up"></i><span>Clique ou arraste a imagem da chapa</span>
+              <input type="file" id="mostruario-foto" accept="image/*" required onchange="previsualizarArquivoMostruario(this)" /></label>
+            <img class="drop-thumb" alt="" /><div id="file-name-preview-mostruario" class="file-preview-text">Nenhum arquivo selecionado</div>
+          </div>
+          <button type="submit" class="btn-publish"><i class="fas fa-plus"></i> Cadastrar chapa</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Chapas cadastradas</h3></div>
+        <div class="toolbar">
+          <input class="field" data-filtro="admin-mostruario-grid" placeholder="Buscar por cor ou fabricante" aria-label="Buscar chapa" />
+          <select class="field" id="filtro-fab" data-filtro="admin-mostruario-grid" aria-label="Filtrar por fabricante"><option value="">Todas as fabricantes</option><option>Guararapes</option><option>Duratex</option></select>
+        </div>
+        <div class="admin-photo-grid" id="admin-mostruario-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <div id="modalCliente" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header"><h3>Novo cliente</h3><span class="close-modal" onclick="fecharModal()" aria-label="Fechar">&times;</span></div>
+      <form id="formNovoCliente" class="upload-form">
+        <div class="input-group-admin"><label for="cad-nome">Nome completo</label><input type="text" id="cad-nome" required /></div>
+        <div class="input-group-admin"><label for="cad-telefone">Telefone</label><input type="text" id="cad-telefone" required /></div>
+        <div class="input-group-admin"><label for="cad-endereco">Endereço</label><input type="text" id="cad-endereco" /></div>
+        <button type="submit" class="btn-publish"><i class="fas fa-floppy-disk"></i> Salvar cliente</button>
+      </form>
+    </div>
+  </div>
+  <div id="toasts" aria-live="polite"></div>
+  <script src="/admin-script.js" is:inline></script>
+  <script src="/admin-ui.js" is:inline></script>
+  <script src="/admin-lote.js" is:inline></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+---
+/* src/pages/admin/login.astro */
+import '/src/styles/admin.css';
+---
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+    <title>Login Administrativo | Marcenaria Portela's</title>
+</head>
+<body class="login-body">
+    <div class="login-box">
+        <div class="brand-mark">P</div>
+        <h2>Área restrita</h2>
+        <p class="sub">Painel da Portela's Marcenaria</p>
+        
+        <form id="login-form">
+            <div class="input-group-admin">
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" placeholder="Digite seu usuário" autocomplete="username" required />
+            </div>
+            
+            <div class="input-group-admin">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password" required />
+            </div>
+
+            <p id="login-erro" class="login-erro" role="alert" hidden></p>
+            <button type="submit">Entrar no painel</button>
+        </form>
+        
+        <a href="/">
+            Voltar para o site
+        </a>
+    </div>
+
+    <script src="/admin-script.js" is:inline></script>
+</body>
+</html>

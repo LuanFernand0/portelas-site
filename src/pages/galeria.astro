@@ -1,0 +1,49 @@
+---
+import LayoutBase from '../layouts/LayoutBase.astro';
+const cats = [['', 'Todos'], ['cozinha', 'Cozinha'], ['quarto', 'Quarto'], ['sala', 'Sala'], ['banheiro', 'Banheiro'], ['externos', 'Externos'], ['3d', 'Projetos 3D']];
+---
+<LayoutBase titulo="Projetos | Portela's Marcenaria" descricao="Galeria de móveis planejados e projetos 3D da Portela's Marcenaria em Niterói." ativo="galeria">
+  <header class="page-head">
+    <div class="container">
+      <h1 id="titulo-pagina">Nossos projetos</h1>
+      <p>Trabalhos entregues em Niterói e região. Clique em uma foto para ampliar e navegar pelas imagens.</p>
+    </div>
+  </header>
+  <section class="container">
+    <div class="chips" role="tablist" aria-label="Filtrar por ambiente">
+      {cats.map(([id, nome]) => <button class="chip" role="tab" data-cat={id} aria-selected="false">{nome}</button>)}
+    </div>
+    <div class="masonry" id="grid-fotos" aria-live="polite"></div>
+  </section>
+  <script is:inline src="/lightbox.js"></script>
+  <script is:inline>
+    // No computador ou pelo Wi-Fi (porta do Astro): servidor na porta 8080 do mesmo endereço. Online: o próprio site.
+    const API_URL = (location.port && !['80', '443', '8080'].includes(location.port)) ? location.protocol + '//' + location.hostname + ':8080' : '';
+    const grid = document.getElementById('grid-fotos');
+    const titulo = document.getElementById('titulo-pagina');
+    const chips = [...document.querySelectorAll('.chip')];
+    let fotos = [];
+    const abs = u => !u ? '' : (/^https?:/.test(u) ? u : API_URL + (u.startsWith('/') ? '' : '/') + u);
+
+    async function carregar(cat) {
+      chips.forEach(c => c.setAttribute('aria-selected', String(c.dataset.cat === cat)));
+      const nome = chips.find(c => c.dataset.cat === cat)?.textContent;
+      titulo.textContent = cat ? 'Projetos: ' + nome : 'Nossos projetos';
+      history.replaceState(null, '', cat ? '?categoria=' + encodeURIComponent(cat) : location.pathname);
+      grid.innerHTML = '<p class="msg">Carregando projetos...</p>';
+      try {
+        const r = await fetch(API_URL + '/api/galeria/listar' + (cat ? '/' + encodeURIComponent(cat) : ''));
+        if (!r.ok) throw new Error();
+        fotos = (await r.json()).map(f => ({ src: abs(f.url), title: f.titulo || 'Projeto Portela\'s', sub: nome && cat ? nome : '' }));
+        if (!fotos.length) { grid.innerHTML = '<p class="msg">Ainda não há fotos ' + (cat ? 'nesta categoria' : 'publicadas') + '. Escolha outro ambiente.</p>'; return; }
+        grid.innerHTML = fotos.map((f, n) => `<button class="m-item" data-i="${n}" aria-label="Ampliar ${Lightbox.esc(f.title)}"><img src="${Lightbox.esc(f.src)}" alt="${Lightbox.esc(f.title)}" loading="lazy"><span>${Lightbox.esc(f.title)}</span></button>`).join('');
+      } catch (e) {
+        grid.innerHTML = '<p class="msg">Não foi possível carregar os projetos agora. Confira se o servidor (backend) está ligado na porta 8080.</p>';
+      }
+    }
+    grid.addEventListener('click', e => { const b = e.target.closest('.m-item'); if (b) Lightbox.open(fotos, +b.dataset.i); });
+    chips.forEach(c => c.addEventListener('click', () => carregar(c.dataset.cat)));
+    const inicial = new URLSearchParams(location.search).get('categoria');
+    carregar(inicial && inicial !== 'null' ? inicial : '');
+  </script>
+</LayoutBase>

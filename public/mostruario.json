@@ -1,0 +1,488 @@
+[
+ {
+  "nome": "Ametista",
+  "fabricante": "Guararapes",
+  "categoria": "Aris",
+  "url": "/mostruario/guararapes/ametista.jpg"
+ },
+ {
+  "nome": "Azul Marinho",
+  "fabricante": "Guararapes",
+  "categoria": "Aris",
+  "url": "/mostruario/guararapes/azul-marinho.jpg"
+ },
+ {
+  "nome": "Neblina",
+  "fabricante": "Guararapes",
+  "categoria": "Aris",
+  "url": "/mostruario/guararapes/neblina.jpg"
+ },
+ {
+  "nome": "Noite",
+  "fabricante": "Guararapes",
+  "categoria": "Aris",
+  "url": "/mostruario/guararapes/noite.jpg"
+ },
+ {
+  "nome": "Alecrim",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/alecrim.jpg"
+ },
+ {
+  "nome": "Areia",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/areia.jpg"
+ },
+ {
+  "nome": "Azul Ardósia",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/azul-ardosia.jpg"
+ },
+ {
+  "nome": "Capuccino",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/capuccino.jpg"
+ },
+ {
+  "nome": "Cinza Perfeito",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/cinza-perfeito.jpg"
+ },
+ {
+  "nome": "Cinza Urban",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/cinza-urban.jpg"
+ },
+ {
+  "nome": "Doce de Leite",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/doce-de-leite.jpg"
+ },
+ {
+  "nome": "Erva Mate",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/erva-mate.jpg"
+ },
+ {
+  "nome": "Grafite",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/grafite.jpg"
+ },
+ {
+  "nome": "Lume",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/lume.jpg"
+ },
+ {
+  "nome": "Mangue",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/mangue.jpg"
+ },
+ {
+  "nome": "Marrom Sépia",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/marrom-sepia.jpg"
+ },
+ {
+  "nome": "Marsala",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/marsala.jpg"
+ },
+ {
+  "nome": "Maxi Branco",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/maxi-branco.jpg"
+ },
+ {
+  "nome": "Nuvem",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/nuvem.jpg"
+ },
+ {
+  "nome": "Rosa Milkshake",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/rosa-milkshake.jpg"
+ },
+ {
+  "nome": "Tijolo",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/tijolo.jpg"
+ },
+ {
+  "nome": "Verde Oliva",
+  "fabricante": "Guararapes",
+  "categoria": "Colors",
+  "url": "/mostruario/guararapes/verde-oliva.jpg"
+ },
+ {
+  "nome": "Bronze",
+  "fabricante": "Guararapes",
+  "categoria": "Comfort",
+  "url": "/mostruario/guararapes/bronze.jpg"
+ },
+ {
+  "nome": "Tear",
+  "fabricante": "Guararapes",
+  "categoria": "Comfort",
+  "url": "/mostruario/guararapes/tear.jpg"
+ },
+ {
+  "nome": "Tela",
+  "fabricante": "Guararapes",
+  "categoria": "Comfort",
+  "url": "/mostruario/guararapes/tela.jpg"
+ },
+ {
+  "nome": "Caribe",
+  "fabricante": "Guararapes",
+  "categoria": "Dual",
+  "url": "/mostruario/guararapes/caribe.jpg"
+ },
+ {
+  "nome": "Azul Petróleo",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/azul-petroleo.jpg"
+ },
+ {
+  "nome": "Bilbao",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/bilbao.jpg"
+ },
+ {
+  "nome": "Branco Iceland",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/branco-iceland.jpg"
+ },
+ {
+  "nome": "Brisa",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/brisa.jpg"
+ },
+ {
+  "nome": "Cipres",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/cipres.jpg"
+ },
+ {
+  "nome": "Fendi",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/fendi.jpg"
+ },
+ {
+  "nome": "Lisboa",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/lisboa.jpg"
+ },
+ {
+  "nome": "Nogal Sevilha",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/nogal-sevilha.jpg"
+ },
+ {
+  "nome": "Preto Silk",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/preto-silk.jpg"
+ },
+ {
+  "nome": "Teka Bianco",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/teka-bianco.jpg"
+ },
+ {
+  "nome": "Terrino",
+  "fabricante": "Guararapes",
+  "categoria": "Flex",
+  "url": "/mostruario/guararapes/terrino.jpg"
+ },
+ {
+  "nome": "Carvalho Capri",
+  "fabricante": "Guararapes",
+  "categoria": "Geométricas",
+  "url": "/mostruario/guararapes/carvalho-capri.jpg"
+ },
+ {
+  "nome": "Mageo Carvalho",
+  "fabricante": "Guararapes",
+  "categoria": "Geométricas",
+  "url": "/mostruario/guararapes/mageo-carvalho.jpg"
+ },
+ {
+  "nome": "Mageo Imbuia",
+  "fabricante": "Guararapes",
+  "categoria": "Geométricas",
+  "url": "/mostruario/guararapes/mageo-imbuia.jpg"
+ },
+ {
+  "nome": "Mageo Mel",
+  "fabricante": "Guararapes",
+  "categoria": "Geométricas",
+  "url": "/mostruario/guararapes/mageo-mel.jpg"
+ },
+ {
+  "nome": "Araucária",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/araucaria.jpg"
+ },
+ {
+  "nome": "Curupixá",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/curupixa.jpg"
+ },
+ {
+  "nome": "Freijó",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/freijo.jpg"
+ },
+ {
+  "nome": "Imbuia",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/imbuia.jpg"
+ },
+ {
+  "nome": "Pau Ferro",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/pau-ferro.jpg"
+ },
+ {
+  "nome": "Peroba",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/peroba.jpg"
+ },
+ {
+  "nome": "Tauari",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Brasil",
+  "url": "/mostruario/guararapes/tauari.jpg"
+ },
+ {
+  "nome": "Alabama",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/alabama.jpg"
+ },
+ {
+  "nome": "Antiqua",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/antiqua.jpg"
+ },
+ {
+  "nome": "Antuérpia",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/antuerpia.jpg"
+ },
+ {
+  "nome": "Baviera",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/baviera.jpg"
+ },
+ {
+  "nome": "Carvalho Natural",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/carvalho-natural.jpg"
+ },
+ {
+  "nome": "Carvalho Nórdico",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/carvalho-nordico.jpg"
+ },
+ {
+  "nome": "Fresno Aveiro",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/fresno-aveiro.jpg"
+ },
+ {
+  "nome": "Fresno Açores",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/fresno-acores.jpg"
+ },
+ {
+  "nome": "Fresno Coimbra",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/fresno-coimbra.jpg"
+ },
+ {
+  "nome": "Fresno Douro",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/fresno-douro.jpg"
+ },
+ {
+  "nome": "Fresno Madeira",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/fresno-madeira.jpg"
+ },
+ {
+  "nome": "Nero",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/nero.jpg"
+ },
+ {
+  "nome": "Nogal Champagne",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/nogal-champagne.jpg"
+ },
+ {
+  "nome": "Nogueira Rubi",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/nogueira-rubi.jpg"
+ },
+ {
+  "nome": "Nogueira Âmbar",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/nogueira-ambar.jpg"
+ },
+ {
+  "nome": "Salerno",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/salerno.jpg"
+ },
+ {
+  "nome": "Savana",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/savana.jpg"
+ },
+ {
+  "nome": "Sonora",
+  "fabricante": "Guararapes",
+  "categoria": "Madeiras do Mundo",
+  "url": "/mostruario/guararapes/sonora.jpg"
+ },
+ {
+  "nome": "Cosmos",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/cosmos.jpg"
+ },
+ {
+  "nome": "Crômio",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/cromio.jpg"
+ },
+ {
+  "nome": "Fontana",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/fontana.jpg"
+ },
+ {
+  "nome": "Marmo",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/marmo.jpg"
+ },
+ {
+  "nome": "Petra",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/petra.jpg"
+ },
+ {
+  "nome": "Quartzo",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/quartzo.jpg"
+ },
+ {
+  "nome": "Santorini",
+  "fabricante": "Guararapes",
+  "categoria": "Magma",
+  "url": "/mostruario/guararapes/santorini.jpg"
+ },
+ {
+  "nome": "Cobre",
+  "fabricante": "Guararapes",
+  "categoria": "Metalique",
+  "url": "/mostruario/guararapes/cobre.jpg"
+ },
+ {
+  "nome": "Corten",
+  "fabricante": "Guararapes",
+  "categoria": "Metalique",
+  "url": "/mostruario/guararapes/corten.jpg"
+ },
+ {
+  "nome": "Metal Champagne",
+  "fabricante": "Guararapes",
+  "categoria": "Metalique",
+  "url": "/mostruario/guararapes/metal-champagne.jpg"
+ },
+ {
+  "nome": "Níquel",
+  "fabricante": "Guararapes",
+  "categoria": "Metalique",
+  "url": "/mostruario/guararapes/niquel.jpg"
+ },
+ {
+  "nome": "Tecno",
+  "fabricante": "Guararapes",
+  "categoria": "Metalique",
+  "url": "/mostruario/guararapes/tecno.jpg"
+ },
+ {
+  "nome": "Ônix",
+  "fabricante": "Guararapes",
+  "categoria": "Metalique",
+  "url": "/mostruario/guararapes/onix.jpg"
+ },
+ {
+  "nome": "Floresta",
+  "fabricante": "Guararapes",
+  "categoria": "Perspectivas",
+  "url": "/mostruario/guararapes/floresta.jpg"
+ },
+ {
+  "nome": "São Paulo",
+  "fabricante": "Guararapes",
+  "categoria": "Perspectivas",
+  "url": "/mostruario/guararapes/sao-paulo.jpg"
+ }
+]

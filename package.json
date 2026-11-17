@@ -1,0 +1,15 @@
+{
+  "name": "meu-projeto",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "celular": "astro dev --host"
+  },
+  "dependencies": {
+    "astro": "^4.0.0"
+  }
+}
