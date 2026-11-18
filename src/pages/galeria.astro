@@ -1,4 +1,5 @@
 ---
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 import LayoutBase from '../layouts/LayoutBase.astro';
 const cats = [['', 'Todos'], ['cozinha', 'Cozinha'], ['quarto', 'Quarto'], ['sala', 'Sala'], ['banheiro', 'Banheiro'], ['externos', 'Externos'], ['3d', 'Projetos 3D']];
 ---
@@ -15,7 +16,7 @@ const cats = [['', 'Todos'], ['cozinha', 'Cozinha'], ['quarto', 'Quarto'], ['sal
     </div>
     <div class="masonry" id="grid-fotos" aria-live="polite"></div>
   </section>
-  <script is:inline src="/lightbox.js"></script>
+  <script is:inline src={`${B}/lightbox.js`}></script>
   <script is:inline>
     // No computador ou pelo Wi-Fi (porta do Astro): servidor na porta 8080 do mesmo endereço. Online: o próprio site.
     const API_URL = (location.port && !['80', '443', '8080'].includes(location.port)) ? location.protocol + '//' + location.hostname + ':8080' : '';
@@ -38,6 +39,13 @@ const cats = [['', 'Todos'], ['cozinha', 'Cozinha'], ['quarto', 'Quarto'], ['sal
         if (!fotos.length) { grid.innerHTML = '<p class="msg">Ainda não há fotos ' + (cat ? 'nesta categoria' : 'publicadas') + '. Escolha outro ambiente.</p>'; return; }
         grid.innerHTML = fotos.map((f, n) => `<button class="m-item" data-i="${n}" aria-label="Ampliar ${Lightbox.esc(f.title)}"><img src="${Lightbox.esc(f.src)}" alt="${Lightbox.esc(f.title)}" loading="lazy"><span>${Lightbox.esc(f.title)}</span></button>`).join('');
       } catch (e) {
+        // Online sem servidor (ex.: GitHub Pages): mostra as fotos que já vêm junto com o site.
+        if (!API_URL) {
+          const amostra = [['cozinha', 'cozinha', 'Cozinha planejada'], ['quarto', 'quarto', 'Quarto planejado'], ['sala', 'sala', 'Sala'], ['banheiro', 'banheiro', 'Banheiro'], ['externos', 'externos', 'Área externa'], ['3d', 'projeto', 'Projeto 3D'], ['3d', 'Desenho', 'Projeto 3D']];
+          fotos = amostra.filter(([c]) => !cat || c === cat).map(([, arq, t]) => ({ src: (window.BASE || '') + '/imagens/' + arq + '.webp', title: t, sub: nome && cat ? nome : '' }));
+          grid.innerHTML = fotos.map((f, n) => `<button class="m-item" data-i="${n}" aria-label="Ampliar ${Lightbox.esc(f.title)}"><img src="${Lightbox.esc(f.src)}" alt="${Lightbox.esc(f.title)}" loading="lazy"><span>${Lightbox.esc(f.title)}</span></button>`).join('');
+          return;
+        }
         grid.innerHTML = '<p class="msg">Não foi possível carregar os projetos agora. Confira se o servidor (backend) está ligado na porta 8080.</p>';
       }
     }

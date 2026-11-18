@@ -1,12 +1,13 @@
 ---
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 import LayoutBase from '../layouts/LayoutBase.astro';
 const ambientes = [
-  { id: 'cozinha', nome: 'Cozinhas', img: '/imagens/cozinha.webp' },
-  { id: 'quarto', nome: 'Quartos', img: '/imagens/quarto.webp' },
-  { id: 'sala', nome: 'Salas', img: '/imagens/sala.webp' },
-  { id: 'banheiro', nome: 'Banheiros', img: '/imagens/banheiro.webp' },
-  { id: 'externos', nome: 'Áreas externas', img: '/imagens/externos.webp' },
-  { id: '3d', nome: 'Projetos 3D', img: '/imagens/projeto.webp' },
+  { id: 'cozinha', nome: 'Cozinhas', img: B + '/imagens/cozinha.webp' },
+  { id: 'quarto', nome: 'Quartos', img: B + '/imagens/quarto.webp' },
+  { id: 'sala', nome: 'Salas', img: B + '/imagens/sala.webp' },
+  { id: 'banheiro', nome: 'Banheiros', img: B + '/imagens/banheiro.webp' },
+  { id: 'externos', nome: 'Áreas externas', img: B + '/imagens/externos.webp' },
+  { id: '3d', nome: 'Projetos 3D', img: B + '/imagens/projeto.webp' },
 ];
 const tons = [
   ['Freijó', 'linear-gradient(95deg,#c79a63,#b98650 40%,#d2a972)'],
@@ -28,15 +29,15 @@ const difs = [
       <h1>Móveis sob medida que valorizam cada ambiente</h1>
       <p>Marcenaria em Itaipu, Niterói. Você vê o projeto em 3D antes da produção e escolhe entre as chapas MDF das principais fabricantes.</p>
       <div class="hero-actions">
-        <a class="btn btn-brass" href="/galeria">Ver projetos</a>
+        <a class="btn btn-brass" href={`${B}/galeria`}>Ver projetos</a>
         <a class="btn btn-line" href="https://wa.me/5521984592134" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Pedir orçamento</a>
       </div>
     </div>
     <div class="swatch-strip">
       <div class="container">
         <span class="t">Escolha a chapa do seu móvel:</span>
-        {tons.map(([n, g]) => <a class="swatch" href="/mostruario"><i style={`background:${g}`}></i>{n}</a>)}
-        <a class="swatch" href="/mostruario"><b>Ver mostruário completo</b></a>
+        {tons.map(([n, g]) => <a class="swatch" href={`${B}/mostruario`}><i style={`background:${g}`}></i>{n}</a>)}
+        <a class="swatch" href={`${B}/mostruario`}><b>Ver mostruário completo</b></a>
       </div>
     </div>
   </header>
@@ -47,7 +48,7 @@ const difs = [
       <p class="section-lead">Toque em um ambiente para ver projetos que já entregamos.</p>
       <div class="mosaic">
         {ambientes.map((a) => (
-          <a href={`/galeria?categoria=${a.id}`}><img src={a.img} alt={a.nome} loading="lazy" /><b>{a.nome}</b></a>
+          <a href={`${B}/galeria?categoria=${a.id}`}><img src={a.img} alt={a.nome} loading="lazy" /><b>{a.nome}</b></a>
         ))}
       </div>
     </div>
@@ -63,9 +64,9 @@ const difs = [
           <li><i class="fas fa-check"></i>Cores e acabamentos escolhidos no mostruário</li>
           <li><i class="fas fa-check"></i>Ajustes antes de cortar a primeira chapa</li>
         </ul>
-        <a class="btn btn-dark" href="/galeria?categoria=3d">Ver projetos 3D</a>
+        <a class="btn btn-dark" href={`${B}/galeria?categoria=3d`}>Ver projetos 3D</a>
       </div>
-      <img src="/imagens/Desenho.webp" alt="Projeto 3D de ambiente planejado" loading="lazy" />
+      <img src={`${B}/imagens/Desenho.webp`} alt="Projeto 3D de ambiente planejado" loading="lazy" />
     </div>
   </section>
 

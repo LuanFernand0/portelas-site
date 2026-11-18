@@ -8,7 +8,8 @@ const imgUrl = u => !u ? '' : (/^https?:/.test(u) ? u : API_BASE + (u.startsWith
 const CHAVE_TOKEN = 'portelas_token';
 const lerToken = () => { try { return localStorage.getItem(CHAVE_TOKEN); } catch (e) { return null; } };
 const gravarToken = t => { try { t ? localStorage.setItem(CHAVE_TOKEN, t) : localStorage.removeItem(CHAVE_TOKEN); } catch (e) {} };
-const naTelaDeLogin = location.pathname.replace(/\/$/, '') === '/login';
+const BASE = window.BASE || '';
+const naTelaDeLogin = location.pathname.replace(/\/$/, '') === BASE + '/login';
 
 const fetchOriginal = window.fetch.bind(window);
 window.fetch = async (url, opcoes = {}) => {
@@ -22,13 +23,13 @@ window.fetch = async (url, opcoes = {}) => {
     const resposta = await fetchOriginal(url, opcoes);
     if (doPainel && resposta.status === 401 && !endereco.includes('/auth/') && !naTelaDeLogin) {
         gravarToken(null);
-        location.href = '/login';
+        location.href = BASE + '/login';
     }
     return resposta;
 };
 
 if (!lerToken() && !naTelaDeLogin) {
-    location.href = '/login';
+    location.href = BASE + '/login';
 }
 
 document.getElementById('login-form')?.addEventListener('submit', async function (e) {
@@ -50,7 +51,7 @@ document.getElementById('login-form')?.addEventListener('submit', async function
         });
         if (res.ok) {
             gravarToken((await res.json()).token);
-            location.href = '/admin';
+            location.href = BASE + '/admin';
             return;
         }
         mostrar(res.status === 401 ? 'Usuário ou senha incorretos.' : 'O servidor respondeu com erro (' + res.status + '). Tente de novo.');
@@ -64,7 +65,7 @@ document.getElementById('login-form')?.addEventListener('submit', async function
 async function efetuarLogout() {
     try { await fetch(`${API_URL}/auth/sair`, { method: 'POST' }); } catch (e) {}
     gravarToken(null);
-    location.href = '/login';
+    location.href = BASE + '/login';
 }
 
 // Reduz fotos grandes antes de enviar (envio mais rápido e site mais leve).
@@ -174,7 +175,7 @@ async function carregarDadosDoBanco() {
     }
 }
 
-if (window.location.pathname !== '/login') {
+if (!naTelaDeLogin) {
     document.addEventListener('DOMContentLoaded', carregarDadosDoBanco);
 }
 

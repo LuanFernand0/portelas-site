@@ -1,9 +1,10 @@
 ---
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 import '../styles/global.css';
 interface Props { titulo: string; descricao?: string; ativo?: string }
 const { titulo, descricao = "Marcenaria sob medida em Itaipu, Niterói: móveis planejados em MDF, projeto 3D e painéis em PVB.", ativo = '' } = Astro.props;
 const WA = 'https://wa.me/5521984592134?text=' + encodeURIComponent("Olá! Vim pelo site e gostaria de um orçamento.");
-const itens = [['/', 'inicio', 'Início'], ['/galeria', 'galeria', 'Projetos'], ['/mostruario', 'mostruario', 'Mostruário de cores'], ['/#contato', 'contato', 'Contato']];
+const itens = [[B + '/', 'inicio', 'Início'], [B + '/galeria', 'galeria', 'Projetos'], [B + '/mostruario', 'mostruario', 'Mostruário de cores'], [B + '/#contato', 'contato', 'Contato']];
 ---
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -11,6 +12,7 @@ const itens = [['/', 'inicio', 'Início'], ['/galeria', 'galeria', 'Projetos'], 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{titulo}</title>
+  <script is:inline set:html={`window.BASE=${JSON.stringify(B)};`}></script>
   <meta name="description" content={descricao} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +23,7 @@ const itens = [['/', 'inicio', 'Início'], ['/galeria', 'galeria', 'Projetos'], 
   <a href={WA} class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="fab fa-whatsapp"></i></a>
   <nav class="navbar" aria-label="Principal">
     <div class="container nav-content">
-      <a href="/" class="logo-portelas" aria-label="Portela's Marcenaria">
+      <a href={`${B}/`} class="logo-portelas" aria-label="Portela's Marcenaria">
         <div class="logo-scale">
           <div class="p-loop"><span class="txt-marcenaria">MARCENARIA</span></div>
           <div class="baixo-container"><div class="p-perna"></div><div class="txt-ortelas">ORTELA'S</div></div>
@@ -31,7 +33,7 @@ const itens = [['/', 'inicio', 'Início'], ['/galeria', 'galeria', 'Projetos'], 
       <label for="nav-toggle" class="nav-burger" aria-label="Abrir menu"><i class="fas fa-bars"></i></label>
       <ul class="nav-links">
         {itens.map(([h, id, t]) => <li><a href={h} aria-current={ativo === id ? 'page' : undefined}>{t}</a></li>)}
-        <li class="nav-admin"><a href="/login">Administração</a></li>
+        <li class="nav-admin"><a href={`${B}/login`}>Administração</a></li>
       </ul>
       <a href={WA} class="btn-orcamento" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i><span>Pedir orçamento</span></a>
     </div>

@@ -1,4 +1,5 @@
 ---
+const B = import.meta.env.BASE_URL.replace(/\/$/, '');
 import '../styles/admin.css';
 const cats = [['cozinha', 'Cozinha'], ['quarto', 'Quarto'], ['sala', 'Sala'], ['banheiro', 'Banheiro'], ['externos', 'Externos'], ['3d', 'Projetos 3D']];
 const menu = [['dashboard', 'fa-gauge-high', 'Visão geral'], ['clientes', 'fa-users', 'Clientes'], ['orcamentos', 'fa-file-invoice-dollar', 'Orçamentos'], ['galeria', 'fa-images', 'Galeria do site'], ['mostruario', 'fa-swatchbook', 'Mostruário de cores']];
@@ -8,6 +9,7 @@ const menu = [['dashboard', 'fa-gauge-high', 'Visão geral'], ['clientes', 'fa-u
 <head>
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel | Portela's Marcenaria</title>
+  <script is:inline set:html={`window.BASE=${JSON.stringify(B)};`}></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -19,7 +21,7 @@ const menu = [['dashboard', 'fa-gauge-high', 'Visão geral'], ['clientes', 'fa-u
       {menu.map(([id, ic, nome], n) => (
         <li id={`menu-${id}`} class={n === 0 ? 'active' : ''}><a href="#" onclick={`mudarAba('${id}');return false`}><i class={`fas ${ic}`}></i>{nome}</a></li>
       ))}
-      <li class="sair"><a href="/" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i>Ver o site</a></li>
+      <li class="sair"><a href={`${B}/`} target="_blank"><i class="fas fa-arrow-up-right-from-square"></i>Ver o site</a></li>
       <li><a href="#" onclick="efetuarLogout();return false"><i class="fas fa-right-from-bracket"></i>Sair</a></li>
     </ul>
   </aside>
@@ -158,8 +160,8 @@ const menu = [['dashboard', 'fa-gauge-high', 'Visão geral'], ['clientes', 'fa-u
     </div>
   </div>
   <div id="toasts" aria-live="polite"></div>
-  <script src="/admin-script.js" is:inline></script>
-  <script src="/admin-ui.js" is:inline></script>
-  <script src="/admin-lote.js" is:inline></script>
+  <script src={`${B}/admin-script.js`} is:inline></script>
+  <script src={`${B}/admin-ui.js`} is:inline></script>
+  <script src={`${B}/admin-lote.js`} is:inline></script>
 </body>
 </html>
